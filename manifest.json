@@ -1,0 +1,76 @@
+{
+  "name": "cortex-plugin-vercel",
+  "version": "1.0.0",
+  "description": "Deploy frontend apps and serverless functions",
+  "kind": "esm",
+  "entryPoint": "mod.ts",
+  "runtime": "deno",
+  "author": "CortexPrism",
+  "license": "MIT",
+  "repository": "https://github.com/CortexPrism/cortex-plugin-vercel",
+  "capabilities": [
+    "tools",
+    "network:fetch",
+    "shell:run"
+  ],
+  "tools": [
+    {
+      "name": "vercel_deploy",
+      "description": "Deploy project to Vercel",
+      "params": [
+        { "name": "project_path", "type": "string", "description": "Path to project directory", "required": true },
+        { "name": "environment", "type": "string", "description": "Deployment environment", "required": false },
+        { "name": "env_vars", "type": "string", "description": "Environment variables as JSON", "required": false },
+        { "name": "build_command", "type": "string", "description": "Custom build command", "required": false }
+      ]
+    },
+    {
+      "name": "vercel_list_deployments",
+      "description": "List deployments",
+      "params": [
+        { "name": "project", "type": "string", "description": "Project name filter", "required": false },
+        { "name": "limit", "type": "number", "description": "Max deployments to show", "required": false }
+      ]
+    },
+    {
+      "name": "vercel_rollback",
+      "description": "Rollback a deployment",
+      "params": [
+        { "name": "deployment_id", "type": "string", "description": "Deployment ID to rollback to", "required": true }
+      ]
+    },
+    {
+      "name": "vercel_get_domains",
+      "description": "List domains",
+      "params": [
+        { "name": "project", "type": "string", "description": "Project name filter", "required": false }
+      ]
+    },
+    {
+      "name": "vercel_list_env_vars",
+      "description": "List environment variables",
+      "params": [
+        { "name": "project", "type": "string", "description": "Project name", "required": true },
+        { "name": "environment", "type": "string", "description": "Environment filter", "required": false }
+      ]
+    }
+  ],
+  "ui": {
+    "section": "Vercel & Netlify",
+    "fields": [
+      { "key": "vercelToken", "label": "Vercel Token", "type": "secret", "description": "Vercel API token", "required": true },
+      { "key": "vercelTeamId", "label": "Vercel Team ID", "type": "text", "description": "Vercel team ID (optional)" },
+      { "key": "vercelDefaultProject", "label": "Default Project", "type": "text", "description": "Default Vercel project name" },
+      { "key": "netlifyToken", "label": "Netlify Token", "type": "secret", "description": "Netlify personal access token" },
+      { "key": "netlifyDefaultSite", "label": "Default Site", "type": "text", "description": "Default Netlify site ID" }
+    ]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "cortex": ">=1.0.0"
+  },
+  "aiDisclosure": {
+    "tools": ["Claude Code (Anthropic)"],
+    "humanReview": true
+  }
+}
