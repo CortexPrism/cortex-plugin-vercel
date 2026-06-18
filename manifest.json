@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-vercel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Deploy frontend apps and serverless functions",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -90,7 +90,12 @@
       "name": "vercel_list_env_vars",
       "description": "List environment variables",
       "params": [
-        { "name": "project", "type": "string", "description": "Project name", "required": true },
+        {
+          "name": "project",
+          "type": "string",
+          "description": "Project name",
+          "required": true
+        },
         {
           "name": "environment",
           "type": "string",
@@ -101,38 +106,42 @@
     }
   ],
   "ui": {
-    "section": "Vercel & Netlify",
-    "fields": [
+    "settings": [
       {
-        "key": "vercelToken",
-        "label": "Vercel Token",
-        "type": "secret",
-        "description": "Vercel API token",
-        "required": true
-      },
-      {
-        "key": "vercelTeamId",
-        "label": "Vercel Team ID",
-        "type": "text",
-        "description": "Vercel team ID (optional)"
-      },
-      {
-        "key": "vercelDefaultProject",
-        "label": "Default Project",
-        "type": "text",
-        "description": "Default Vercel project name"
-      },
-      {
-        "key": "netlifyToken",
-        "label": "Netlify Token",
-        "type": "secret",
-        "description": "Netlify personal access token"
-      },
-      {
-        "key": "netlifyDefaultSite",
-        "label": "Default Site",
-        "type": "text",
-        "description": "Default Netlify site ID"
+        "section": "Vercel & Netlify",
+        "fields": [
+          {
+            "key": "vercelToken",
+            "label": "Vercel Token",
+            "type": "secret",
+            "description": "Vercel API token",
+            "required": true
+          },
+          {
+            "key": "vercelTeamId",
+            "label": "Vercel Team ID",
+            "type": "text",
+            "description": "Vercel team ID (optional)"
+          },
+          {
+            "key": "vercelDefaultProject",
+            "label": "Default Project",
+            "type": "text",
+            "description": "Default Vercel project name"
+          },
+          {
+            "key": "netlifyToken",
+            "label": "Netlify Token",
+            "type": "secret",
+            "description": "Netlify personal access token"
+          },
+          {
+            "key": "netlifyDefaultSite",
+            "label": "Default Site",
+            "type": "text",
+            "description": "Default Netlify site ID"
+          }
+        ]
       }
     ]
   },
@@ -141,7 +150,10 @@
     "cortex": ">=1.0.0"
   },
   "aiDisclosure": {
-    "tools": ["Claude Code (Anthropic)"],
+    "tools": [
+      "Claude Code (Anthropic)"
+    ],
     "humanReview": true
-  }
+  },
+  "homepage": "https://github.com/CortexPrism/cortex-plugin-vercel"
 }

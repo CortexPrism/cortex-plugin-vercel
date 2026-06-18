@@ -3,6 +3,7 @@ import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.t
 let config: Record<string, string | boolean> = {};
 
 export async function onLoad(ctx: PluginContext): Promise<void> {
+  ctx.logger.info(`[cortex-plugin-vercel] Loaded`);
   config = {
     vercelToken: (await ctx.config.get('vercelToken')) ?? '',
     vercelTeamId: (await ctx.config.get('vercelTeamId')) ?? '',
