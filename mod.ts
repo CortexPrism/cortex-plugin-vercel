@@ -1,5 +1,5 @@
 // deno-lint-ignore-file
-import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.ts';
+import type { PluginContext, Tool, ToolCallResult } from 'cortex/plugins';
 
 let config: Record<string, string | boolean> = {};
 
@@ -48,7 +48,7 @@ const vercel_deploy: Tool = {
     ],
     capabilities: ['shell:run', 'network:fetch'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const projectPath = args.project_path as string;
@@ -109,7 +109,7 @@ const vercel_list_deployments: Tool = {
     ],
     capabilities: ['shell:run', 'network:fetch'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const limit = (args.limit as number) ?? 20;
@@ -153,7 +153,7 @@ const vercel_rollback: Tool = {
     ],
     capabilities: ['shell:run', 'network:fetch'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const deploymentId = args.deployment_id as string;
@@ -199,7 +199,7 @@ const vercel_get_domains: Tool = {
     ],
     capabilities: ['shell:run', 'network:fetch'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const cmdArgs = ['domains', 'ls'];
@@ -236,7 +236,7 @@ const vercel_list_env_vars: Tool = {
     ],
     capabilities: ['shell:run', 'network:fetch'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const project = args.project as string;
